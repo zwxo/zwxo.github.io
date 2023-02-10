@@ -3,6 +3,8 @@
   
   
     
+    
+    
     <entry>
       <title>Hexo(Matery)自定义(四)：禁止搜索加密/隐藏文章内容</title>
       <link href="/article/38293/"/>
@@ -30,6 +32,10 @@
     
     
     
+  
+    
+    
+    
     <entry>
       <title>Hexo(Matery)自定义(三)：增加文章页面</title>
       <link href="/article/24877/"/>
@@ -54,6 +60,10 @@
         </tags>
       
     </entry>
+    
+    
+    
+  
     
     
     
@@ -86,6 +96,10 @@
     
     
     
+  
+    
+    
+    
     <entry>
       <title>Hexo(Matery)自定义(一)：添加游戏项目</title>
       <link href="/article/36588/"/>
@@ -115,6 +129,10 @@
     
     
     
+  
+    
+    
+    
     <entry>
       <title>CentOS安装wkhtmltox（wkhtmltopdf）</title>
       <link href="/article/38139/"/>
@@ -139,6 +157,10 @@
         </tags>
       
     </entry>
+    
+    
+    
+  
     
     
     
@@ -171,6 +193,10 @@
     
     
     
+  
+    
+    
+    
     <entry>
       <title>Typecho个人博客的搭建</title>
       <link href="/article/40722/"/>
@@ -198,6 +224,10 @@
     
     
     
+  
+    
+    
+    
     <entry>
       <title>笔记系统Leanote的安装和部署</title>
       <link href="/article/64935/"/>
@@ -222,6 +252,10 @@
         </tags>
       
     </entry>
+    
+    
+    
+  
     
     
     
@@ -254,6 +288,10 @@
     
     
     
+  
+    
+    
+    
     <entry>
       <title>conda命令使用</title>
       <link href="/article/44489/"/>
@@ -276,6 +314,10 @@
         </tags>
       
     </entry>
+    
+    
+    
+  
     
     
     
@@ -306,6 +348,10 @@
     
     
     
+  
+    
+    
+    
     <entry>
       <title>CentOS7 防火墙操作命令</title>
       <link href="/article/12774/"/>
@@ -330,6 +376,10 @@
         </tags>
       
     </entry>
+    
+    
+    
+  
     
     
     
@@ -360,6 +410,10 @@
     
     
     
+  
+    
+    
+    
     <entry>
       <title>本地连接服务器远程写代码</title>
       <link href="/article/52120/"/>
@@ -384,6 +438,10 @@
         </tags>
       
     </entry>
+    
+    
+    
+  
     
     
     
@@ -416,6 +474,10 @@
     
     
     
+  
+    
+    
+    
     <entry>
       <title>宝塔面板安装和基本配置</title>
       <link href="/article/52020/"/>
@@ -443,30 +505,17 @@
     
     
     
-    <entry>
-      <title>学习参考</title>
-      <link href="/article/12345/"/>
-      <url>/article/12345/</url>
-      
-        <content type="html"><![CDATA[<p>密码：<code>200629.</code></p><h2 id="CentOS"><a href="#CentOS" class="headerlink" title="CentOS"></a>CentOS</h2><ol><li><p>查看yum命令安装jdk的路径:<a href="https://blog.csdn.net/weixin_44898710/article/details/110003226">https://blog.csdn.net/weixin_44898710/article/details/110003226</a></p></li><li><p>hadoop:<a href="https://blog.csdn.net/weixin_44898710/article/details/109832031">https://blog.csdn.net/weixin_44898710/article/details/109832031</a></p></li><li><p><a href="https://blog.csdn.net/youif/article/details/107321470">https://blog.csdn.net/youif/article/details/107321470</a></p></li><li><p><a href="https://blog.csdn.net/m0_58945994/article/details/120885093">https://blog.csdn.net/m0_58945994/article/details/120885093</a></p></li><li><p><a href="https://blog.csdn.net/TzBugs/article/details/107787163">https://blog.csdn.net/TzBugs/article/details/107787163</a></p></li><li><p><a href="https://blog.csdn.net/qq_28513801/article/details/89477620">https://blog.csdn.net/qq_28513801/article/details/89477620</a></p></li><li><p><a href="https://blog.csdn.net/qq_38712932/article/details/84197154">https://blog.csdn.net/qq_38712932/article/details/84197154</a></p></li><li><p>CentOS7镜像下载:<a href="http://mirrors.bupt.edu.cn/centos/7.9.2009/isos/x86_64/">http://mirrors.bupt.edu.cn/centos/7.9.2009/isos/x86_64/</a></p></li><li><p>VMware 创建CentOS虚拟机:<a href="https://blog.csdn.net/WeiHao0240/article/details/100894672">https://blog.csdn.net/WeiHao0240/article/details/100894672</a></p></li><li><p>虚拟机网卡重启:<a href="https://blog.csdn.net/baifei5229/article/details/101659845">https://blog.csdn.net/baifei5229/article/details/101659845</a></p></li><li><p><a href="https://blog.csdn.net/u011350541/article/details/78224872">https://blog.csdn.net/u011350541/article/details/78224872</a></p></li><li><p>netstat:<a href="https://blog.csdn.net/guofangsky/article/details/88995073">https://blog.csdn.net/guofangsky/article/details/88995073</a></p></li><li><p>防火墙以及端口操作:<a href="https://blog.csdn.net/weixin_42410658/article/details/104371807">https://blog.csdn.net/weixin_42410658/article/details/104371807</a></p></li><li><p>centos7 如何安装与使用 Anaconda:<a href="https://cloud.tencent.com/developer/article/1671942">https://cloud.tencent.com/developer/article/1671942</a></p></li><li><p>解决安装完anaconda后每次打开终端都进入base环境的问题:<a href="https://blog.csdn.net/m0_45388819/article/details/109452860">https://blog.csdn.net/m0_45388819/article/details/109452860</a></p></li><li><p>conda 导出环境&#x2F;导入环境&#x2F;导出base环境:<a href="https://blog.csdn.net/shunaoxi2313/article/details/92003710">https://blog.csdn.net/shunaoxi2313/article/details/92003710</a></p></li><li><p>conda 创建复制原环境&#x2F;不联网&#x2F;指定版本的虚拟环境:<a href="https://codeantenna.com/a/TA9tkAWGP0">https://codeantenna.com/a/TA9tkAWGP0</a></p></li><li><p>CentOS 7 查看和控制进程:<a href="https://www.cnblogs.com/ycz109/p/12970848.html">https://www.cnblogs.com/ycz109/p/12970848.html</a></p></li><li><p>CentOS7 防火墙（firewall）的操作命令:<a href="https://www.cnblogs.com/leoxuan/p/8275343.html">https://www.cnblogs.com/leoxuan/p/8275343.html</a></p></li></ol><h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><ol start="3"><li><p>npm error:<a href="https://blog.csdn.net/qq_35913301/article/details/125394027">https://blog.csdn.net/qq_35913301/article/details/125394027</a></p></li><li><p>hexo网页相册页面的制作:<a href="https://blog.csdn.net/hehung/article/details/103547450">https://blog.csdn.net/hehung/article/details/103547450</a></p></li><li><p><a href="https://hin.cool/">https://hin.cool/</a></p></li></ol><h2 id="OJ"><a href="#OJ" class="headerlink" title="OJ"></a>OJ</h2><ol><li><p><a href="https://github.com/QingdaoU/OnlineJudgeDeploy">https://github.com/QingdaoU/OnlineJudgeDeploy</a></p></li><li><p><a href="https://blog.csdn.net/jfukg/article/details/116383830">https://blog.csdn.net/jfukg/article/details/116383830</a></p></li></ol><h1 id="WordPress"><a href="#WordPress" class="headerlink" title="WordPress"></a>WordPress</h1><ol><li>插件实现wordpress文章评论邮件通知功能:<a href="https://cloud.tencent.com/developer/article/1617151">https://cloud.tencent.com/developer/article/1617151</a></li></ol><h2 id="Qt"><a href="#Qt" class="headerlink" title="Qt"></a>Qt</h2><ol><li>PyQt5基本控件详解之QMessageBox:<a href="https://blog.csdn.net/jia666666/article/details/81540785">https://blog.csdn.net/jia666666/article/details/81540785</a></li></ol><h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><ol><li><p><a href="https://www.php.cn/js-tutorial-411235.html">https://www.php.cn/js-tutorial-411235.html</a></p></li><li><p><a href="https://blog.csdn.net/Zyonqin/article/details/103207242">https://blog.csdn.net/Zyonqin/article/details/103207242</a></p></li><li><p><a href="http://c.biancheng.net/view/8226.html">http://c.biancheng.net/view/8226.html</a></p></li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> 阿柯 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 参考 </tag>
-            
-        </tags>
-      
-    </entry>
+  
+    
     
     
   
+  
+
   
 </search>
+
+来源: 为蝉鸣
+文章作者: 维
+文章链接: https://m.zwxo.cn/article/38293/
+本文章著作权归作者所有，任何形式的转载都请注明出处。
