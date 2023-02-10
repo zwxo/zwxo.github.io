@@ -1,0 +1,2490 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Linux,CentOS,进程,服务器管理">
+    <meta name="description" content="Linux进程的查看和管理">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    
+
+    <title>Linux 进程管理 | 小蝉博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <!-- loading -->
+    <link rel="stylesheet" type="text/css" href="/css/loading.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="小蝉博客" type="application/atom+xml">
+</head>
+
+
+<body>
+    <!-- loading -->
+    
+    <div id="loading-box">
+      <div class="loading-left-bg"></div>
+      <div class="loading-right-bg"></div>
+      <div class="spinner-box">
+        <div class="configure-border-1">
+          <div class="configure-core"></div>
+        </div>
+        <div class="configure-border-2">
+          <div class="configure-core"></div>
+        </div>
+        <div class="loading-word">加载中...</div>
+      </div>
+    </div>
+    <!-- 页面加载动画 -->
+    <script>
+      $(document).ready(function () {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loading-box').classList.add("loaded")
+      })
+    </script>
+  
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">小蝉博客</span>
+                </a>
+            </div>
+    
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/article" class="waves-effect waves-light">
+
+      
+      <i class="fa-fw fa fa-bars" style="zoom: 0.6;"></i>
+      
+      <span>文章</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/archives">
+          
+          <i class="fas fa-archive" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>归档</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/categories">
+          
+          <i class="fas fa-bookmark" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>分类</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/tags">
+          
+          <i class="fas fa-tags" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>标签</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/stat">
+          
+          <i class="fa fa fa-list-alt" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>统计</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fa-fw fas fa-star" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/about">
+          
+          <i class="fas fa-user-circle" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>知蝉</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/friends">
+          
+          <i class="fas fa-address-book" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>友链</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/shuoshuo">
+          
+          <i class="fas fa-message" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>说说</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/guestbook">
+          
+          <i class="fas fa-comments" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>留言板</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/game" class="waves-effect waves-light">
+
+      
+      <i class="fa-solid fa-gamepad" style="zoom: 0.6;"></i>
+      
+      <span>娱乐</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/game/mf">
+          
+          <i class="fa-solid fa-cube" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>魔方</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/game/sl">
+          
+          <i class="fa-brands fa-galactic-republic" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>扫雷</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/game/2048">
+          
+          <i class="fa-brands fa-pix" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>2048</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/game/clock">
+          
+          <i class="fa-solid fa-clock" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>时钟</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/game/clock/1">
+          
+          <i class="fa-solid fa-clock" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>时钟-1</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/game/wzq">
+          
+          <i class="fa-solid fa-chess-board" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>五子棋</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/game/txz">
+          
+          <i class="fa-solid fa-box" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>推箱子</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/game/sds">
+          
+          <i class="fa-solid fa-tree" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>圣诞树</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/game/dblk">
+          
+          <i class="fa-solid fa-location-arrow" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>躲避绿块</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/more" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>更多</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/musics">
+          
+          <i class="fas fa-music" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Musics</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/movies">
+          
+          <i class="fas fa-film" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Movies</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/gallery">
+          
+          <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Gallery</span>
+        </a>
+      </li>
+      
+      <li>
+        <a target="_blank" rel="noopener" href="http://leancloud.wzspace.cn">
+          
+          <i class="fas fa-message" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>评论</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/site" class="waves-effect waves-light">
+
+      
+      <i class="fa-solid fa-sitemap" style="zoom: 0.6;"></i>
+      
+      <span>站点</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a target="_blank" rel="noopener" href="http://note.wzspace.cn/note/">
+          
+          <i class="fa-solid fa-book" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>在线笔记</span>
+        </a>
+      </li>
+      
+      <li>
+        <a target="_blank" rel="noopener" href="http://typecho.wzspace.cn">
+          
+          <i class="fa-solid fa-paper-plane" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Typecho</span>
+        </a>
+      </li>
+      
+      <li>
+        <a target="_blank" rel="noopener" href="http://api.wzspace.cn">
+          
+          <i class="fa-solid fa-code" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>API资源</span>
+        </a>
+      </li>
+      
+      <li>
+        <a target="_blank" rel="noopener" href="http://data.wzspace.cn">
+          
+          <i class="fa-solid fa-database" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>数据资源</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">小蝉博客</div>
+        <div class="logo-desc">
+            
+            记录那些容易忘记的过去
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fa-fw fa fa-bars"></i>
+			
+			文章
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background: #f6f4f0;" >
+              
+                <li>
+
+                  <a href="/archives " style="margin-left:50px">
+				  
+				   <i class="fa fas fa-archive" style="position: absolute;left:28px" ></i>
+			      
+		          <span>归档</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/categories " style="margin-left:50px">
+				  
+				   <i class="fa fas fa-bookmark" style="position: absolute;left:28px" ></i>
+			      
+		          <span>分类</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/tags " style="margin-left:50px">
+				  
+				   <i class="fa fas fa-tags" style="position: absolute;left:28px" ></i>
+			      
+		          <span>标签</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/stat " style="margin-left:50px">
+				  
+				   <i class="fa fa fa fa-list-alt" style="position: absolute;left:28px" ></i>
+			      
+		          <span>统计</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fa-fw fas fa-star"></i>
+			
+			关于
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background: #f6f4f0;" >
+              
+                <li>
+
+                  <a href="/about " style="margin-left:50px">
+				  
+				   <i class="fa fas fa-user-circle" style="position: absolute;left:28px" ></i>
+			      
+		          <span>知蝉</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/friends " style="margin-left:50px">
+				  
+				   <i class="fa fas fa-address-book" style="position: absolute;left:28px" ></i>
+			      
+		          <span>友链</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/shuoshuo " style="margin-left:50px">
+				  
+				   <i class="fa fas fa-message" style="position: absolute;left:28px" ></i>
+			      
+		          <span>说说</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/guestbook " style="margin-left:50px">
+				  
+				   <i class="fa fas fa-comments" style="position: absolute;left:28px" ></i>
+			      
+		          <span>留言板</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fa-solid fa-gamepad"></i>
+			
+			娱乐
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background: #f6f4f0;" >
+              
+                <li>
+
+                  <a href="/game/mf " style="margin-left:50px">
+				  
+				   <i class="fa fa-solid fa-cube" style="position: absolute;left:28px" ></i>
+			      
+		          <span>魔方</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/game/sl " style="margin-left:50px">
+				  
+				   <i class="fa fa-brands fa-galactic-republic" style="position: absolute;left:28px" ></i>
+			      
+		          <span>扫雷</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/game/2048 " style="margin-left:50px">
+				  
+				   <i class="fa fa-brands fa-pix" style="position: absolute;left:28px" ></i>
+			      
+		          <span>2048</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/game/clock " style="margin-left:50px">
+				  
+				   <i class="fa fa-solid fa-clock" style="position: absolute;left:28px" ></i>
+			      
+		          <span>时钟</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/game/clock/1 " style="margin-left:50px">
+				  
+				   <i class="fa fa-solid fa-clock" style="position: absolute;left:28px" ></i>
+			      
+		          <span>时钟-1</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/game/wzq " style="margin-left:50px">
+				  
+				   <i class="fa fa-solid fa-chess-board" style="position: absolute;left:28px" ></i>
+			      
+		          <span>五子棋</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/game/txz " style="margin-left:50px">
+				  
+				   <i class="fa fa-solid fa-box" style="position: absolute;left:28px" ></i>
+			      
+		          <span>推箱子</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/game/sds " style="margin-left:50px">
+				  
+				   <i class="fa fa-solid fa-tree" style="position: absolute;left:28px" ></i>
+			      
+		          <span>圣诞树</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/game/dblk " style="margin-left:50px">
+				  
+				   <i class="fa fa-solid fa-location-arrow" style="position: absolute;left:28px" ></i>
+			      
+		          <span>躲避绿块</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			更多
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background: #f6f4f0;" >
+              
+                <li>
+
+                  <a href="/musics " style="margin-left:50px">
+				  
+				   <i class="fa fas fa-music" style="position: absolute;left:28px" ></i>
+			      
+		          <span>Musics</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/movies " style="margin-left:50px">
+				  
+				   <i class="fa fas fa-film" style="position: absolute;left:28px" ></i>
+			      
+		          <span>Movies</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/gallery " style="margin-left:50px">
+				  
+				   <i class="fa fas fa-image" style="position: absolute;left:28px" ></i>
+			      
+		          <span>Gallery</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a target="_blank" rel="noopener" href="http://leancloud.wzspace.cn " style="margin-left:50px">
+				  
+				   <i class="fa fas fa-message" style="position: absolute;left:28px" ></i>
+			      
+		          <span>评论</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fa-solid fa-sitemap"></i>
+			
+			站点
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background: #f6f4f0;" >
+              
+                <li>
+
+                  <a target="_blank" rel="noopener" href="http://note.wzspace.cn/note/ " style="margin-left:50px">
+				  
+				   <i class="fa fa-solid fa-book" style="position: absolute;left:28px" ></i>
+			      
+		          <span>在线笔记</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a target="_blank" rel="noopener" href="http://typecho.wzspace.cn " style="margin-left:50px">
+				  
+				   <i class="fa fa-solid fa-paper-plane" style="position: absolute;left:28px" ></i>
+			      
+		          <span>Typecho</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a target="_blank" rel="noopener" href="http://api.wzspace.cn " style="margin-left:50px">
+				  
+				   <i class="fa fa-solid fa-code" style="position: absolute;left:28px" ></i>
+			      
+		          <span>API资源</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a target="_blank" rel="noopener" href="http://data.wzspace.cn " style="margin-left:50px">
+				  
+				   <i class="fa fa-solid fa-database" style="position: absolute;left:28px" ></i>
+			      
+		          <span>数据资源</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/zw-space" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/zw-space" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('隐私内容，输入密码访问哦😁~')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错啦，即将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://s3.bmp.ovh/imgs/2022/07/21/4458a9e8b4b4940d.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Linux 进程管理</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+        
+        
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Linux/">
+                                <span class="chip bg-color">Linux</span>
+                            </a>
+                        
+                            <a href="/tags/%E8%BF%9B%E7%A8%8B/">
+                                <span class="chip bg-color">进程</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%A1%E7%90%86/">
+                                <span class="chip bg-color">服务器管理</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/linux/" class="post-category">
+                                Linux
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-07-21
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2022-07-25
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.2k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                
+                
+                <h1 id="Linux 进程管理"><a href="#Linux 进程管理" class="headerlink" title="Linux 进程管理" target="_blank"></a>Linux 进程管理</h1>
+                
+                
+                <h2 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h2><h3 id="ps命令"><a href="#ps命令" class="headerlink" title="ps命令"></a>ps命令</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> aux<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<blockquote>
+<p>命令解释</p>
+</blockquote>
+<ul>
+<li>a 显示当前终端下的所有进程信息，包括其他用户的进程</li>
+<li>u 以用户为主的进程状态</li>
+<li>x 显示所有进程，不以终端机来区分</li>
+<li>-e：显示系统内所有的进程信息</li>
+<li>-l ：使用长格式显示进程信息</li>
+<li>-f ：使用完整的格式显示进程信息</li>
+</ul>
+<blockquote>
+<p>显示出来的信息</p>
+</blockquote>
+<p>USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND</p>
+<ul>
+<li>USER 启动这些进程的用户</li>
+<li>PID 进程的PID</li>
+<li>%CPU 进程占用CPU的百分比</li>
+<li>%MEM 进程占用内存的百分比</li>
+<li>VSZ 进程占用的虚拟内存大小（KB）</li>
+<li>RSS 进程占用的物理内存的大小（KB）</li>
+<li>START 该进程被触发的时间</li>
+<li>TIME 该进程实际使用CPU运作的时间</li>
+<li>COMMAND 该程序使用的指令</li>
+<li>STAT 该程序目前的状态，linux进程有五种基本状态：<ul>
+<li>R 该程序目前正在工作，或者是可被运作</li>
+<li>S 该进程目前正在睡眠中，可被某些讯号唤醒</li>
+<li>T 该程序目前正在侦测或者是停止了</li>
+<li>Z 该进程应该已经被终止，但是其父程序却无法正常终止他，造成僵尸进程</li>
+<li>D 不可中断状态</li>
+<li>五个基本状态后的小状态：<ul>
+<li>&lt; 表示进程运行在高优先级上</li>
+<li>N 表示进程运行在低优先级上</li>
+<li>L 表示进程有页面锁定在内存中</li>
+<li>s 表示进程是控制进程</li>
+<li>l 表示进程是多线程</li>
+<li>+ 表示当前进程运行在前台</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="pstree命令"><a href="#pstree命令" class="headerlink" title="pstree命令"></a>pstree命令</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pstree<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<p>显示出来的信息</p>
+</blockquote>
+<p>各个进程的树形结构</p>
+<h3 id="pgrep命令"><a href="#pgrep命令" class="headerlink" title="pgrep命令"></a>pgrep命令</h3><ul>
+<li>例：匹配用户<code>root</code>下包含<code>ssh</code>的最新进程的<code>“PID、进程名和完整的命令行”</code></li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pgrep <span class="token parameter variable">-lanu</span> root <span class="token function">ssh</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<blockquote>
+<p>命令解释</p>
+</blockquote>
+<ul>
+<li>-d, –delimiter <string> 指定输出分隔符</li>
+<li>-l, –list-name 列出PID和进程名</li>
+<li>-a, –list-full 列出 PID 和完整的命令行</li>
+<li>-v, –inverse 否定匹配</li>
+<li>-w, –lightweight 列出所有 TID</li>
+<li>-c, –count 匹配进程的计数</li>
+<li>-f, –full 使用完整的进程名来匹配</li>
+<li>-n, –newest 选择最近开始的</li>
+<li>-o, –oldest 选择最初开始的</li>
+<li>-s, –session &lt;SID,…&gt; 匹配会话 ID</li>
+<li>-u, –euid &lt;ID,…&gt; 指定用户</li>
+<li>-x, –exact 与命令名完全匹配</li>
+</ul>
+<blockquote>
+<p>注意：pgrep使用正则匹配</p>
+</blockquote>
+<blockquote>
+<p>和ps命令一起使用</p>
+</blockquote>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> aux <span class="token operator">|</span> <span class="token function">grep</span> <span class="token function">ssh</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="top命令"><a href="#top命令" class="headerlink" title="top命令"></a>top命令</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">top</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<blockquote>
+<p>显示出来的信息</p>
+</blockquote>
+<ul>
+<li>Tasks: <ul>
+<li>total 总进程数</li>
+<li>running 正在运行的进程数</li>
+<li>sleeping 睡眠的进程数</li>
+<li>stopped 停止的进程数</li>
+<li>zombie 僵尸进程数</li>
+</ul>
+</li>
+<li>%Cpu(s):<ul>
+<li>us 系统用户进程使用CPU百分比</li>
+<li>sy 内核中的进程占用CPU百分比</li>
+<li>ni 用户进程空间内改变过优先级的进程占用CPU百分比</li>
+<li>id 空闲的CPU百分比</li>
+<li>wa CPU等待I&#x2F;O完成的时间总量</li>
+<li>hi 硬中断占比</li>
+<li>si 软中断占比</li>
+<li>st 虚拟机占用物理的时间，例如物理机运行了KVM，则表示KVM占用物理机的CPU时间</li>
+</ul>
+</li>
+<li>KiB Mem:<ul>
+<li>total 物理内存总量</li>
+<li>free 空闲内存总量</li>
+<li>used 使用的物理内存总量</li>
+<li>buff&#x2F;cache 内核缓存内存量</li>
+</ul>
+</li>
+<li>KiB Swap<ul>
+<li>total 交换分区总量</li>
+<li>free 空闲交换分区总量</li>
+<li>used 使用的交换分区总量</li>
+<li>cached 可利用内存总量</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>快捷键</p>
+</blockquote>
+<ul>
+<li>q 退出</li>
+<li>P 按CPU排序按CPU排序</li>
+<li>M 按内存排序</li>
+<li>T 按时间排序</li>
+<li>1 显示每个内核的CPU使用率</li>
+<li>u&#x2F;U 指定显示的用户</li>
+<li>h: 帮助</li>
+<li>-p: <code>top -p 进程号</code>，查看某个进程状态</li>
+</ul>
+<h3 id="uptime查看系统负载"><a href="#uptime查看系统负载" class="headerlink" title="uptime查看系统负载"></a>uptime查看系统负载</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">uptime</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<blockquote>
+<p>显示出来的信息</p>
+</blockquote>
+<p>对应系统时间，系统已运行时间，登录用户数，load average（分别为1分钟、5分钟、15分钟前到现在的平均值）</p>
+<h2 id="后台运行进程"><a href="#后台运行进程" class="headerlink" title="后台运行进程"></a>后台运行进程</h2><h3 id="amp-命令"><a href="#amp-命令" class="headerlink" title="&amp;命令"></a>&amp;命令</h3><p>在运行命令后面加上&amp;：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bash</span> test.sh <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="nohup命令"><a href="#nohup命令" class="headerlink" title="nohup命令"></a>nohup命令</h3><p>nohup的方法可以使终端关闭后依旧保持运行：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">nohup</span> <span class="token function">bash</span> test.sh <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>该程序默认输出在nohup.out文件，通过指令重定向输出文件：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">nohup</span> <span class="token function">bash</span> test.sh <span class="token operator">></span> test.log <span class="token operator"><span class="token file-descriptor important">2</span>></span><span class="token file-descriptor important">&amp;1</span> <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>其中2&gt;&amp;1表示将错误输出重定向到标准输出</p>
+<h2 id="杀死进程"><a href="#杀死进程" class="headerlink" title="杀死进程"></a>杀死进程</h2><h3 id="kill"><a href="#kill" class="headerlink" title="kill"></a>kill</h3><h4 id="显示可用的信号"><a href="#显示可用的信号" class="headerlink" title="显示可用的信号"></a>显示可用的信号</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> <span class="token parameter variable">-l</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="强制终止进程"><a href="#强制终止进程" class="headerlink" title="强制终止进程"></a>强制终止进程</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> <span class="token parameter variable">-KILL</span> <span class="token number">123456</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="彻底杀死进程"><a href="#彻底杀死进程" class="headerlink" title="彻底杀死进程"></a>彻底杀死进程</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> <span class="token parameter variable">-9</span> 进程pid<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="杀死指定用户的进程"><a href="#杀死指定用户的进程" class="headerlink" title="杀死指定用户的进程"></a>杀死指定用户的进程</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> <span class="token parameter variable">-u</span> <span class="token builtin class-name">test</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<blockquote>
+<p>注意：Linux的<code>kill</code>命令是向进程发送信号，<code>kill</code>不是杀死的意思，<code>-9</code>表示无条件退出，但由进程自行决定是否退出，这就是为什么<code>kill -9</code>终止不了系统进程和守护进程的原因。</p>
+</blockquote>
+<h3 id="killall"><a href="#killall" class="headerlink" title="killall"></a>killall</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">killall</span> 进程名称 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+                
+            </div>
+
+        
+
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">知蝉</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://zw-space.github.io/article/61876/">https://zw-space.github.io/article/61876/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">知蝉</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Linux/">
+                                    <span class="chip bg-color">Linux</span>
+                                </a>
+                            
+                                <a href="/tags/%E8%BF%9B%E7%A8%8B/">
+                                    <span class="chip bg-color">进程</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%A1%E7%90%86/">
+                                    <span class="chip bg-color">服务器管理</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title"></h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+
+        
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.webp") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<style>
+    #vcomments .vcards .vcard {
+        padding: 15px 20px 0 20px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        box-shadow: 0 0 4px 1px rgba(0, 0, 0, .12);
+        transition: all .3s
+    }
+
+    #vcomments .vcards .vcard:hover {
+        box-shadow: 0 0 8px 3px rgba(0, 0, 0, .12)
+    }
+
+    #vcomments .vcards .vcard .vh .vcard {
+        border: none;
+        box-shadow: none;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<!-- 直达评论 -->
+<style>
+    /*直达评论按钮样式*/
+    .comment-scroll {
+        width: 48px;
+        height: 48px;
+        text-align: center;
+        border-radius: 50%;
+        position: fixed;
+        right: 15px;
+        bottom: 151px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    .comment-scroll .btn-floating {
+        background: linear-gradient(to bottom right, #FF9999 0%, #ff6666 100%);
+        width: 48px;
+        height: 48px;
+    }
+
+    .comment-scroll .btn-floating i {
+        line-height: 48px;
+        font-size: 1.8rem;
+    }
+
+</style>
+
+<!-- 直达评论 -->
+<div id="to_comment" class="comment-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#vcomments" title="直达评论">
+      <i class="fas fa-comments"></i>
+    </a>
+</div>
+
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'cw3CmxrBDm3voVt6kiJ7pApc-MdYXbMMI',
+        appKey: 'mKbk4SqFhKJFUvjFS3YlaIql',
+        serverURLs: 'https://cw3cmxrb.api.lncldglobal.com',
+        notify: false,
+        verify: false,
+        visitor: false,  // 文章阅读统计
+        mathJax: false,  // 数学公式功能
+
+        enableQQ: true,  // 是否启用昵称框自动获取QQ昵称和QQ头像
+        boolean: true,
+        requiredFields: ["nick", "mail"],
+        meta: ["nick","mail","link"],
+        placeholder: '在这里写下你想说的话哦~',
+
+        avatar: 'wavatar',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '在这里写下你想说的话哦~',
+        // // 设置Bilibili表情包地址
+        // emojiCDN: '//i0.hdslb.com/bfs/emote/', 
+        // // 表情title和图片映射
+        // emojiMaps: {
+        // "tv_doge": "6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+        // "tv_亲亲": "a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+        // "tv_偷笑": "bb690d4107620f1c15cff29509db529a73aee261.png",
+        // "tv_再见": "180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+        // "tv_冷漠": "b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+        // "tv_发怒": "34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+        // "tv_发财": "34db290afd2963723c6eb3c4560667db7253a21a.png",
+        // "tv_可爱": "9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+        // "tv_吐血": "09dd16a7aa59b77baa1155d47484409624470c77.png",
+        // "tv_呆": "fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+        // "tv_呕吐": "9f996894a39e282ccf5e66856af49483f81870f3.png",
+        // "tv_困": "241ee304e44c0af029adceb294399391e4737ef2.png",
+        // "tv_坏笑": "1f0b87f731a671079842116e0991c91c2c88645a.png",
+        // "tv_大佬": "093c1e2c490161aca397afc45573c877cdead616.png",
+        // "tv_大哭": "23269aeb35f99daee28dda129676f6e9ea87934f.png",
+        // "tv_委屈": "d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+        // "tv_害羞": "a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+        // "tv_尴尬": "7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+        // "tv_微笑": "70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+        // "tv_思考": "90cf159733e558137ed20aa04d09964436f618a1.png",
+        // "tv_惊吓": "0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+        // "tv_打脸": "56ab10b624063e966bfcb76ea5dc4794d87dfd47.png",
+        // "tv_抓狂": "fe31c08edad661d63762b04e17b8d5ae3c71a757.png",
+        // "tv_抠鼻": "c666f55e88d471e51bbd9fab9bb308110824a6eb.png",
+        // "tv_斜眼笑": "911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png",
+        // "tv_无奈": "ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png",
+        // "tv_晕": "5443c22b4d07fb1907ccc610c8e6db254f2461b7.png",
+        // "tv_流汗": "cead1c351ab8d79e9f369605beb90148db0fbed3.png",
+        // "tv_流泪": "7e71cde7858f0cd50d74b0264aa26db612a8a167.png",
+        // "tv_流鼻血": "c32d39db2737f89b904ca32700d140a9241b0767.png",
+        // "tv_点赞": "f85c354995bd99e28fc76c869bfe42ba6438eff4.png",
+        // "tv_生气": "26702dcafdab5e8225b43ffd23c94ac1ff932654.png",
+        // "tv_生病": "8b0ec90e6b86771092a498c54f09fc94621c1900.png",
+        // "tv_疑问": "0793d949b18d7be716078349c202c15ff166f314.png",
+        // "tv_白眼": "c1d59f439e379ee50eef488bcb5e5378e5044ea4.png",
+        // "tv_皱眉": "72ccad6679fea0d14cce648b4d818e09b8ffea2d.png",
+        // "tv_目瞪口呆": "0b8cb81a68de5d5365212c99375e7ace3e7891b7.png",
+        // "tv_睡着": "8b196675b53af58264f383c50ad0945048290b33.png",
+        // "tv_笑哭": "1abc628f6d4f4caf9d0e7800878f4697abbc8273.png",
+        // "tv_腼腆": "89712c0d4af73e67f89e35cbc518420380a7f6f4.png",
+        // "tv_色": "61822c7e9aae5da76475e7892534545336b23a6f.png",
+        // "tv_调侃": "4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png",
+        // "tv_调皮": "b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png",
+        // "tv_鄙视": "6e72339f346a692a495b123174b49e4e8e781303.png",
+        // "tv_闭嘴": "c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png",
+        // "tv_难过": "87f46748d3f142ebc6586ff58860d0e2fc8263ba.png",
+        // "tv_馋": "fc7e829b845c43c623c8b490ee3602b7f0e76a31.png",
+        // "tv_鬼脸": "0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png",
+        // "tv_黑人问号": "45821a01f51bc867da9edbaa2e070410819a95b2.png",
+        // "tv_鼓掌": "1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png"
+        //     // ... 更多表情
+        // }
+    });
+</script>
+
+<!--酷Q推送-->
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/article/64935/">
+                    <div class="card-image">
+                        
+                        <img src="https://s3.bmp.ovh/imgs/2022/07/21/a232784a5541b703.jpg" class="responsive-img" alt="笔记系统Leanote的安装和部署">
+                        
+                        <span class="card-title">笔记系统Leanote的安装和部署</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            开源笔记系统leanote的安装和部署教程
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-22
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/tutorials/" class="post-category">
+                                    教程
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Leanote/">
+                        <span class="chip bg-color">Leanote</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%9A%82%E8%9A%81%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">蚂蚁笔记</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/article/44489/">
+                    <div class="card-image">
+                        
+                        <img src="https://s3.bmp.ovh/imgs/2022/07/21/9e5b51ba786e1375.jpg" class="responsive-img" alt="conda命令使用">
+                        
+                        <span class="card-title">conda命令使用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            conda的常用命令集合
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-19
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/note/" class="post-category">
+                                    学习笔记
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/conda/">
+                        <span class="chip bg-color">conda</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+
+    
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022-2023</span>
+            
+            <a href="/about" target="_blank">知蝉</a>
+            |&nbsp;Powered by&nbsp;<a href="/" target="_blank">小蝉博客</a>
+            
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">13.2k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2022";
+                        var startMonth = "5";
+                        var startDate = "21";
+                        var startHour = "13";
+                        var startMinute = "14";
+                        var startSecond = "7";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        var diffHours = Math.floor((diff / hours) - diffDays * 24 - diffYears * 365 * 24);
+                        var diffMinutes = Math.floor((diff / minutes) - diffHours * 60 - diffDays * 24 * 60 - diffYears * 365 * 24 * 60);
+                        var diffSeconds = Math.floor((diff / seconds) - diffMinutes * 60 - diffHours * 60 * 60 - diffDays * 24 * 60 * 60 - diffYears * 365 * 24 * 60 * 60);
+
+                        //var diffHours = 7;var diffMinutes = 7;var diffSeconds = 7;
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (!diffYears) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '站点已运行 ' + diffDays + ' 天' + diffHours + '小时' + diffMinutes + '分钟' + diffSeconds + '秒';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '站点已运行 ' + diffDays + ' 天' + diffHours + '小時' + diffMinutes + '分鐘' + diffSeconds + '秒';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '站点已运行 ' + diffYears + ' 年 ' + diffDays + ' 天' + diffHours + '小时' + diffMinutes + '分钟' + diffSeconds + '秒';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '站点已运行 ' + diffYears + ' 年 ' + diffDays + ' 天' + diffHours + '小時' + diffMinutes + '分鐘' + diffSeconds + '秒';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    //calcSiteTime();
+                    setInterval("calcSiteTime()",250);
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis"><!-- 
+    <a href="https://github.com/zw-space" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=XCY0PTNyKzk1cjE9NTAcLS1yPzMx" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+    <a href="https://www.zhihu.com/people/dream52/posts" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://www.zhihu.com/people/dream52/posts" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+ -->
+
+
+    <a href="https://github.com/zw-space" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=XCY0PTNyKzk1cjE9NTAcLS1yPzMx" class="tooltipped" target="_blank" data-tooltip="邮件" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+    <a href="https://www.zhihu.com/people/dream52/posts" class="tooltipped" target="_blank" data-tooltip="知乎" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+
+    <!-- 黑色背景 -->
+    <!-- 白天和黑夜主题 -->
+<div class="sum-moon-box">
+  <a class="btn-floating btn-large waves-effect waves-light" onclick="switchNightMode()" title="切换主题" >
+    <i id="sum-moon-icon" class="fas fa-sun" style="width:48px; height:48px; font-size: 28px;"></i>
+  </a>
+</div>
+
+<script>
+  function switchNightMode() {
+    $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+      setTimeout(function () {
+        $('body').hasClass('DarkMode') 
+        ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+        : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+          
+        setTimeout(function () {
+          $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+            $(this).remove()
+          })
+        }, 2e3)
+      })
+  }
+</script>
+
+<!-- 切换白天和黑夜 -->
+<div class="stars-con">
+  <div id="stars"></div>
+  <div id="stars2"></div>
+  <div id="stars3"></div>  
+</div>
+
+    
+    <script>
+        /* 模式判断 */
+        if (localStorage.getItem('isDark') === '1') {
+            document.body.classList.add('DarkMode');
+            $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')
+        } else {
+            document.body.classList.remove('DarkMode');
+            $('#sum-moon-icon').removeleClass("fa-sun").addClass('fa-moon')
+        }
+    </script>
+    
+
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+    <script type="text/javascript" color="0,0,255"
+        pointColor="0,0,255" opacity='0.7'
+        zIndex="-1" count="99"
+        src="/libs/background/canvas-nest.js"></script>
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/libs/background/ribbon-refresh.min.js" async="async"></script>
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

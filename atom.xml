@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>小蝉博客</title>
+  
+  <subtitle>我小窝</subtitle>
+  <link href="https://zw-space.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://zw-space.github.io/"/>
+  <updated>2022-07-26T10:21:01.000Z</updated>
+  <id>https://zw-space.github.io/</id>
+  
+  <author>
+    <name>知蝉</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo(Matery)自定义(四)：禁止搜索加密/隐藏文章内容</title>
+    <link href="https://zw-space.github.io/article/38293/"/>
+    <id>https://zw-space.github.io/article/38293/</id>
+    <published>2022-07-26T10:12:06.000Z</published>
+    <updated>2022-07-26T10:21:01.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;注意事项&quot;&gt;&lt;a href=&quot;#注意事项&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Hexo" scheme="https://zw-space.github.io/categories/hexo/"/>
+    
+    
+    <category term="Matery" scheme="https://zw-space.github.io/tags/Matery/"/>
+    
+    <category term="文章搜索" scheme="https://zw-space.github.io/tags/%E6%96%87%E7%AB%A0%E6%90%9C%E7%B4%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo(Matery)自定义(三)：增加文章页面</title>
+    <link href="https://zw-space.github.io/article/24877/"/>
+    <id>https://zw-space.github.io/article/24877/</id>
+    <published>2022-07-26T09:08:51.000Z</published>
+    <updated>2022-07-29T10:58:30.828Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;注意事项&quot;&gt;&lt;a href=&quot;#注意事项&quot; class=&quot;headerlink&quot; title=&quot;注意事项&quot;&gt;&lt;/a&gt;注意事项&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;本文与上一篇原理差不多：&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Hexo" scheme="https://zw-space.github.io/categories/hexo/"/>
+    
+    
+    <category term="Matery" scheme="https://zw-space.github.io/tags/Matery/"/>
+    
+    <category term="文章页面" scheme="https://zw-space.github.io/tags/%E6%96%87%E7%AB%A0%E9%A1%B5%E9%9D%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo(Matery)自定义(二)：增加文章统计</title>
+    <link href="https://zw-space.github.io/article/41278/"/>
+    <id>https://zw-space.github.io/article/41278/</id>
+    <published>2022-07-26T08:37:52.000Z</published>
+    <updated>2022-07-29T10:58:14.223Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;注意事项&quot;&gt;&lt;a href=&quot;#注意事项&quot; class=&quot;headerlink&quot; title=&quot;注意事项&quot;&gt;&lt;/a&gt;注意事项&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;页面预览：&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Hexo" scheme="https://zw-space.github.io/categories/hexo/"/>
+    
+    
+    <category term="Matery" scheme="https://zw-space.github.io/tags/Matery/"/>
+    
+    <category term="统计" scheme="https://zw-space.github.io/tags/%E7%BB%9F%E8%AE%A1/"/>
+    
+    <category term="归档" scheme="https://zw-space.github.io/tags/%E5%BD%92%E6%A1%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo(Matery)自定义(一)：添加游戏项目</title>
+    <link href="https://zw-space.github.io/article/36588/"/>
+    <id>https://zw-space.github.io/article/36588/</id>
+    <published>2022-07-26T07:28:26.000Z</published>
+    <updated>2022-07-26T09:23:19.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;注意事项&quot;&gt;&lt;a href=&quot;#注意事项&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Hexo" scheme="https://zw-space.github.io/categories/hexo/"/>
+    
+    
+    <category term="Matery" scheme="https://zw-space.github.io/tags/Matery/"/>
+    
+    <category term="html" scheme="https://zw-space.github.io/tags/html/"/>
+    
+    <category term="game" scheme="https://zw-space.github.io/tags/game/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CentOS安装wkhtmltox（wkhtmltopdf）</title>
+    <link href="https://zw-space.github.io/article/38139/"/>
+    <id>https://zw-space.github.io/article/38139/</id>
+    <published>2022-07-23T09:07:31.000Z</published>
+    <updated>2022-07-25T15:16:48.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;注意事项&quot;&gt;&lt;a href=&quot;#注意事项&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="CentOS" scheme="https://zw-space.github.io/categories/centos/"/>
+    
+    
+    <category term="CentOS" scheme="https://zw-space.github.io/tags/CentOS/"/>
+    
+    <category term="wkhtmltox" scheme="https://zw-space.github.io/tags/wkhtmltox/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux（CentOS）虚拟机应急模式修复方法</title>
+    <link href="https://zw-space.github.io/article/36275/"/>
+    <id>https://zw-space.github.io/article/36275/</id>
+    <published>2022-07-23T07:52:21.000Z</published>
+    <updated>2022-07-25T15:16:35.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;正准备用虚拟机来测试一些东西，结果突然进不去，翻译一下理解是进入了应急模式&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;我们在使用vmware虚拟机（安装CentOS操作系统）常常因为非正常断电而导致再次启动时，提示进入紧急模式，而无法进入系统的情况，如下图所示：&lt;</summary>
+        
+      
+    
+    
+    
+    <category term="Linux" scheme="https://zw-space.github.io/categories/linux/"/>
+    
+    
+    <category term="CentOS" scheme="https://zw-space.github.io/tags/CentOS/"/>
+    
+    <category term="Linux" scheme="https://zw-space.github.io/tags/Linux/"/>
+    
+    <category term="应急模式" scheme="https://zw-space.github.io/tags/%E5%BA%94%E6%80%A5%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Typecho个人博客的搭建</title>
+    <link href="https://zw-space.github.io/article/40722/"/>
+    <id>https://zw-space.github.io/article/40722/</id>
+    <published>2022-07-23T04:12:46.000Z</published>
+    <updated>2022-07-29T10:59:07.157Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;注意事项&quot;&gt;&lt;a href=&quot;#注意事项&quot; class=&quot;headerlink&quot; title=&quot;注意事项&quot;&gt;&lt;/a&gt;注意事项&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Demo：&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="教程" scheme="https://zw-space.github.io/categories/tutorials/"/>
+    
+    
+    <category term="Typecho" scheme="https://zw-space.github.io/tags/Typecho/"/>
+    
+    <category term="个人博客" scheme="https://zw-space.github.io/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>笔记系统Leanote的安装和部署</title>
+    <link href="https://zw-space.github.io/article/64935/"/>
+    <id>https://zw-space.github.io/article/64935/</id>
+    <published>2022-07-22T10:04:28.000Z</published>
+    <updated>2022-07-29T10:56:16.510Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;注意事项&quot;&gt;&lt;a href=&quot;#注意事项&quot; class=&quot;headerlink&quot; title=&quot;注意事项&quot;&gt;&lt;/a&gt;注意事项&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Demo：&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="教程" scheme="https://zw-space.github.io/categories/tutorials/"/>
+    
+    
+    <category term="Leanote" scheme="https://zw-space.github.io/tags/Leanote/"/>
+    
+    <category term="蚂蚁笔记" scheme="https://zw-space.github.io/tags/%E8%9A%82%E8%9A%81%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux 进程管理</title>
+    <link href="https://zw-space.github.io/article/61876/"/>
+    <id>https://zw-space.github.io/article/61876/</id>
+    <published>2022-07-21T09:43:16.000Z</published>
+    <updated>2022-07-25T15:16:39.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;查看进程&quot;&gt;&lt;a href=&quot;#查看进程&quot; class=&quot;headerlink&quot; title=&quot;查看进程&quot;&gt;&lt;/a&gt;查看进程&lt;/h2&gt;&lt;h3 id=&quot;ps命令&quot;&gt;&lt;a href=&quot;#ps命令&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Linux" scheme="https://zw-space.github.io/categories/linux/"/>
+    
+    
+    <category term="Linux" scheme="https://zw-space.github.io/tags/Linux/"/>
+    
+    <category term="进程" scheme="https://zw-space.github.io/tags/%E8%BF%9B%E7%A8%8B/"/>
+    
+    <category term="服务器管理" scheme="https://zw-space.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%A1%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>conda命令使用</title>
+    <link href="https://zw-space.github.io/article/44489/"/>
+    <id>https://zw-space.github.io/article/44489/</id>
+    <published>2022-07-19T08:24:53.000Z</published>
+    <updated>2022-07-29T10:57:45.885Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;注意事项&quot;&gt;&lt;a href=&quot;#注意事项&quot; class=&quot;headerlink&quot; title=&quot;注意事项&quot;&gt;&lt;/a&gt;注意事项&lt;/h2&gt;&lt;p&gt;未安装conda参考：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CentOS7：&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记" scheme="https://zw-space.github.io/categories/note/"/>
+    
+    
+    <category term="conda" scheme="https://zw-space.github.io/tags/conda/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux安装 Anaconda</title>
+    <link href="https://zw-space.github.io/article/31589/"/>
+    <id>https://zw-space.github.io/article/31589/</id>
+    <published>2022-07-19T08:23:14.000Z</published>
+    <updated>2022-07-25T15:16:31.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;下载安装脚本&quot;&gt;&lt;a href=&quot;#下载安装脚本&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Linux" scheme="https://zw-space.github.io/categories/linux/"/>
+    
+    
+    <category term="Linux" scheme="https://zw-space.github.io/tags/Linux/"/>
+    
+    <category term="Anaconda" scheme="https://zw-space.github.io/tags/Anaconda/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CentOS7 防火墙操作命令</title>
+    <link href="https://zw-space.github.io/article/12774/"/>
+    <id>https://zw-space.github.io/article/12774/</id>
+    <published>2022-07-19T07:07:17.000Z</published>
+    <updated>2022-07-25T15:16:53.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;注意事项&quot;&gt;&lt;a href=&quot;#注意事项&quot; class=&quot;headerlink&quot; title=&quot;注意事项&quot;&gt;&lt;/a&gt;注意事项&lt;/h2&gt;&lt;p&gt;没有firewalld请先安装，安装命令：&lt;/p&gt;
+&lt;pre class=&quot;line-numbers</summary>
+        
+      
+    
+    
+    
+    <category term="CentOS" scheme="https://zw-space.github.io/categories/centos/"/>
+    
+    
+    <category term="CentOS" scheme="https://zw-space.github.io/tags/CentOS/"/>
+    
+    <category term="firewall" scheme="https://zw-space.github.io/tags/firewall/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>利用多线程加速下载文件（Python）</title>
+    <link href="https://zw-space.github.io/article/12991/"/>
+    <id>https://zw-space.github.io/article/12991/</id>
+    <published>2022-07-16T10:57:31.000Z</published>
+    <updated>2022-07-25T15:17:08.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;需要的库&quot;&gt;&lt;a href=&quot;#需要的库&quot; class=&quot;headerlink&quot; title=&quot;需要的库&quot;&gt;&lt;/a&gt;需要的库&lt;/h2&gt;&lt;pre class=&quot;line-numbers language-txt&quot; data-language=&quot;txt&quot;&gt;&lt;code</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记" scheme="https://zw-space.github.io/categories/note/"/>
+    
+    
+    <category term="多线程" scheme="https://zw-space.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+    <category term="Python" scheme="https://zw-space.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>本地连接服务器远程写代码</title>
+    <link href="https://zw-space.github.io/article/52120/"/>
+    <id>https://zw-space.github.io/article/52120/</id>
+    <published>2022-07-14T08:22:45.000Z</published>
+    <updated>2022-07-25T15:17:24.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;服务器写代码对我来说是一件痛苦又无奈的事，但好在还能解决，我记录了几种能够远程写代码的方法&lt;/p&gt;
+&lt;h2 id=&quot;VsCode&quot;&gt;&lt;a href=&quot;#VsCode&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="CentOS" scheme="https://zw-space.github.io/categories/centos/"/>
+    
+    
+    <category term="Linux" scheme="https://zw-space.github.io/tags/Linux/"/>
+    
+    <category term="VSCode" scheme="https://zw-space.github.io/tags/VSCode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用宝塔面板部署hexo博客</title>
+    <link href="https://zw-space.github.io/article/52021/"/>
+    <id>https://zw-space.github.io/article/52021/</id>
+    <published>2022-07-13T17:24:57.000Z</published>
+    <updated>2022-07-29T10:56:47.502Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;注意事项&quot;&gt;&lt;a href=&quot;#注意事项&quot; class=&quot;headerlink&quot; title=&quot;注意事项&quot;&gt;&lt;/a&gt;注意事项&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;本文使用宝塔面板辅助部署，安装参考 &lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Hexo" scheme="https://zw-space.github.io/categories/hexo/"/>
+    
+    
+    <category term="CentOS" scheme="https://zw-space.github.io/tags/CentOS/"/>
+    
+    <category term="Hexo" scheme="https://zw-space.github.io/tags/Hexo/"/>
+    
+    <category term="matery" scheme="https://zw-space.github.io/tags/matery/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>宝塔面板安装和基本配置</title>
+    <link href="https://zw-space.github.io/article/52020/"/>
+    <id>https://zw-space.github.io/article/52020/</id>
+    <published>2022-07-13T16:59:14.000Z</published>
+    <updated>2022-07-25T15:17:33.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;注意事项&quot;&gt;&lt;a href=&quot;#注意事项&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="CentOS" scheme="https://zw-space.github.io/categories/centos/"/>
+    
+    
+    <category term="CentOS" scheme="https://zw-space.github.io/tags/CentOS/"/>
+    
+    <category term="Linux" scheme="https://zw-space.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>学习参考</title>
+    <link href="https://zw-space.github.io/article/12345/"/>
+    <id>https://zw-space.github.io/article/12345/</id>
+    <published>2022-05-21T05:14:20.000Z</published>
+    <updated>2022-07-26T09:35:54.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;密码：&lt;code&gt;200629.&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&quot;CentOS&quot;&gt;&lt;a href=&quot;#CentOS&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="阿柯" scheme="https://zw-space.github.io/categories/me/"/>
+    
+    
+    <category term="参考" scheme="https://zw-space.github.io/tags/%E5%8F%82%E8%80%83/"/>
+    
+  </entry>
+  
+</feed>

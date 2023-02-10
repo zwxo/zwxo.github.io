@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>躲避绿块 | 名侦探柯基</title>
+		<link rel="icon" type="image/png" href="/favicon.png">
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			body {
+				background: #326b86;
+				color: #ffffff;
+				font: 12px Arial, sans-serif;
+			}
+			a {
+				color: #fff;
+			}
+			ul,
+			li {
+				list-style: none;
+			}
+			#div1 {
+				position: relative;
+				width: 450px;
+				height: 400px;
+				background: #222;
+				margin: 30px auto;
+				padding-top: 50px;
+				overflow: hidden;
+			}
+			#div2 {
+				width: 350px;
+				height: 350px;
+				background: #fff;
+				margin: 0 auto;
+			}
+			#son1 {
+				position: absolute;
+				left: 30px;
+				top: 0;
+				background: #008040;
+				height: 20px;
+				width: 100px;
+				filter: alpha(opacity=60);
+				opacity: 0.6;
+			}
+			#son2 {
+				position: absolute;
+				right: 30px;
+				top: 0px;
+				background: #008040;
+				height: 100px;
+				width: 20px;
+				filter: alpha(opacity=60);
+				opacity: 0.6;
+			}
+			#son3 {
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				background: #008040;
+				height: 100px;
+				width: 20px;
+				filter: alpha(opacity=60);
+				opacity: 0.6;
+			}
+			#move {
+				position: absolute;
+				width: 50px;
+				height: 50px;
+				background: red;
+				filter: alpha(opacity=60);
+				opacity: 0.6;
+				cursor: move;
+			}
+			#divNavBar {
+				border: 1px solid #5f91a6;
+				border-radius: 6px 6px 6px 6px;
+				padding: 0;
+				width: 650px;
+				margin: 20px auto;
+			}
+			#divNavBar ul {
+				zoom: 1;
+			}
+			#divNavBar ul:after {
+				clear: both;
+				content: '';
+				display: block;
+			}
+			#divNavBar li {
+				background: url('') no-repeat scroll right 2px transparent;
+				float: left;
+				margin: 2px;
+				padding: 0 2px;
+			}
+			#divNavBar a {
+				float: left;
+				height: 14px;
+				margin: 0;
+				padding: 6px 10px 4px;
+				text-decoration: none;
+				color: #fff;
+			}
+			.STYLE1 {
+				font-size: 16px;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<div id="divNavBar">
+				<ul>
+					<li><h3><a href="../">返回游戏首页</a></h3></li>
+				</ul>
+			</div>
+			<div
+				id="mb"
+				style="
+					display: none;
+					width: 100%;
+					height: 100%;
+					filter: alpha(opacity=60);
+					opacity: 0.6;
+					background: #111;
+					position: absolute;
+					top: 0;
+					left: 0;
+					z-index: 9999;
+				"
+			></div>
+			<div id="div1">
+				<div id="div2">
+					<div id="son1"></div>
+					<div id="son2"></div>
+					<div id="son3"></div>
+					<div id="move"></div>
+				</div>
+			</div>
+			<p
+				id="p1"
+				style="
+					position: absolute;
+					top: 22px;
+					left: 0;
+					width: 100%;
+					color: #fff;
+					font-size: 24px;
+					text-align: center;
+					z-index: -1;
+				"
+			></p>
+			<p
+				align="center"
+				style="
+					width: 500px;
+					margin: 0 auto;
+					font-size: 14px;
+					line-height: 18px;
+				"
+			>
+				游戏规则：鼠标拖动红块，躲避绿块，避免碰到黑边。<br />
+				<br />坚持的时间越长越牛X！(本游戏支持IE, Chrome, Firefox, safari等浏览器！)
+			</p>
+		</div>
+		<script type="text/javascript">
+			var game = {
+				ms: 0,
+				sec: 0,
+				minute: 0,
+				isMove: true,
+				timeStart: null,
+				son: [],
+				$id: function (id) {
+					return typeof id == 'string'
+						? document.getElementById(id)
+						: id
+				},
+				redDiv: function () {
+					return game.$id('move')
+				},
+				writeDiv: function () {
+					return game.$id('div2')
+				},
+				move: function (obj1, obj2, v) {
+					var o = game.$id(obj2)
+					var redDiv = game.$id('move')
+					var changeSpeed = 0
+					var x = o.offsetLeft,
+						y = o.offsetTop,
+						fx = 1,
+						fy = 1
+					var iWidth =
+						game.$id(obj1).offsetWidth -
+						game.$id(obj2).offsetWidth * Math.random(2)
+					var iHeight =
+						game.$id(obj1).offsetHeight -
+						game.$id(obj2).offsetHeight * Math.random(2)
+					o.Timer = setInterval(function () {
+						x += v * fx
+						y += v * fy
+						changeSpeed++
+						if (changeSpeed % 300 == 0) {
+							v += 2
+						}
+						if (x > iWidth || x < 0) {
+							fx *= -1
+						}
+						if (y > iHeight || y < 0) {
+							fy *= -1
+						}
+						o.style.left = x + 'px'
+						o.style.top = y + 'px'
+						if (game.crashCheck(o, redDiv)) {
+							game.clearSet()
+							clearInterval(game.timeStart)
+							game.timeStart = null
+							game.stopMove()
+							alert('您坚持了' + game.$id('p1').innerHTML)
+							setTimeout(game.iLoad, 300)
+						}
+					}, 30)
+				},
+				oTime: function () {
+					game.ms = parseInt(game.ms) + 10
+					if (parseInt(game.ms) == 100) {
+						game.sec++
+						game.ms = 0
+					}
+					if (parseInt(game.sec) == 60) {
+						game.minute++
+						game.sec = 0
+					}
+					// if (parseInt(game.minute == 60)) {
+					// 	game.hour++
+					// 	game.minute = 0
+					// }
+					if (parseInt(game.ms) < 10) {
+						game.ms = '0' + game.ms
+					}
+					var show = game.$id('p1')
+					if (game.sec < 10)
+						show.innerHTML =
+							// game.hour +
+							// ':' +
+							game.minute + '分' + game.sec + '秒' + game.ms + ''
+					if (game.minute < 10)
+						show.innerHTML =
+							// game.hour +
+							// ':0' +
+							game.minute + '分' + game.sec + '秒' + game.ms + ''
+					if (game.sec < 10 && game.minute < 10)
+						show.innerHTML =
+							// game.hour +
+							// ':0' +
+							game.minute + '分' + game.sec + '秒' + game.ms + ''
+					// show.innerHTML =
+					// 	game.hour +
+					// 	':' +
+					else game.minute + '分' + game.sec + '秒' + game.ms + ''
+				},
+				iMouse: null,
+				oDiv: null,
+				startMove: function (obj, ev) {
+					var oEvent = ev || event
+					if (game.isMove) {
+						game.move('div1', 'son1', 3)
+						game.move('div1', 'son2', 3)
+						game.move('div1', 'son3', 3)
+						game.ms = 0
+						game.sec = 0
+						game.minute = 0
+						// game.hour = 0
+						game.timeStart = setInterval('game.oTime()', 100)
+						game.isMove = false
+					}
+					game.iMouse = { x: oEvent.clientX, y: oEvent.clientY }
+					game.oDiv = { x: obj.offsetLeft, y: obj.offsetTop }
+					if (obj.setCapture) {
+						obj.onmousemove = game.doMove
+						obj.onmouseup = game.stopMove
+						obj.setCapture()
+					} else {
+						document.addEventListener(
+							'mousemove',
+							game.doMove,
+							true
+						)
+						document.addEventListener(
+							'mouseup',
+							game.stopMove,
+							true
+						)
+					}
+				},
+				doMove: function (ev) {
+					var oEvent = ev || event
+					l = oEvent.clientX - game.iMouse.x + game.oDiv.x
+					t = oEvent.clientY - game.iMouse.y + game.oDiv.y
+					if (
+						l < game.writeDiv().offsetLeft ||
+						l >
+							game.writeDiv().offsetWidth -
+								game.redDiv().offsetWidth +
+								game.writeDiv().offsetLeft ||
+						t < game.writeDiv().offsetTop ||
+						t >
+							game.writeDiv().offsetHeight -
+								game.redDiv().offsetHeight +
+								game.writeDiv().offsetTop
+					) {
+						game.clearSet()
+						clearInterval(game.timeStart)
+						game.timeStart = null
+						game.stopMove()
+						alert('您坚持了' + game.$id('p1').innerHTML + '秒')
+						setTimeout(game.iLoad, 100)
+					}
+					game.redDiv().style.left = l + 'px'
+					game.redDiv().style.top = t + 'px'
+				},
+				stopMove: function (ev) {
+					if (game.redDiv().releaseCapture) {
+						game.redDiv().onmousemove = null
+						game.redDiv().onmouseup = null
+						game.redDiv().releaseCapture()
+					} else {
+						document.removeEventListener(
+							'mousemove',
+							game.doMove,
+							true
+						)
+						document.removeEventListener(
+							'mouseup',
+							game.stopMove,
+							true
+						)
+					}
+				},
+				crashCheck: function (objDrag, oDiv) {
+					var dragDiv1 = {
+						l1: objDrag.offsetLeft,
+						r1: objDrag.offsetLeft + objDrag.offsetWidth,
+						t1: objDrag.offsetTop,
+						b1: objDrag.offsetTop + objDrag.offsetHeight,
+					}
+					var moveDiv2 = {
+						l1: oDiv.offsetLeft,
+						r1: oDiv.offsetLeft + oDiv.offsetWidth,
+						t1: oDiv.offsetTop,
+						b1: oDiv.offsetTop + oDiv.offsetHeight,
+					}
+					if (
+						dragDiv1.r1 < moveDiv2.l1 ||
+						dragDiv1.l1 > moveDiv2.r1 ||
+						dragDiv1.b1 < moveDiv2.t1 ||
+						dragDiv1.t1 > moveDiv2.b1
+					) {
+						return false
+					} else {
+						return true
+					}
+				},
+				clearSet: function () {
+					var divNum = game.$id('div2').getElementsByTagName('div')
+					for (var i = 0, l = divNum.length - 1; i < l; i++) {
+						clearInterval(divNum[i].Timer)
+						divNum[i].Timer = null
+					}
+				},
+				success: function () {
+					var divNum = game.$id('div2').getElementsByTagName('div')
+					for (var i = 0, l = divNum.length - 1; i < l; i++) {
+						game.son.push(divNum[i].offsetLeft)
+						game.son.push(divNum[i].offsetTop)
+					}
+					game.$id('move').style.left =
+						(game.$id('div1').offsetWidth -
+							game.$id('move').offsetWidth) /
+							2 +
+						'px'
+					game.$id('move').style.top =
+						(game.$id('div1').offsetHeight -
+							game.$id('move').offsetHeight) /
+							2 +
+						'px'
+					game.$id('move').onmousedown = function (ev) {
+						game.startMove(this, ev)
+					}
+					document.write('')
+				},
+				iLoad: function () {
+					game.isMove = true
+					game.$id('move').style.left =
+						(game.$id('div1').offsetWidth -
+							game.$id('move').offsetWidth) /
+							2 +
+						'px'
+					game.$id('move').style.top =
+						(game.$id('div1').offsetHeight -
+							game.$id('move').offsetHeight) /
+							2 +
+						'px'
+					var divNum = game.$id('div2').getElementsByTagName('div')
+					for (var i = 0, l = divNum.length - 1; i < l; i++) {
+						var n = 2 * i
+						divNum[i].style.left = game.son[n] + 'px'
+						divNum[i].style.top = game.son[n + 1] + 'px'
+					}
+				},
+			}
+			game.success()
+		</script>
+	</body>
+</html>
