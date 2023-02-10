@@ -834,42 +834,108 @@
 
 </header>
 
-    <style type="text/css">
-    /* don't remove. */
-    .about-cover {
-        height: 90.2vh;
-    }
-</style>
-<div class="bg-cover pd-header about-cover">
+    <div class="bg-cover pd-header about-cover">
     <div class="container">
-        <div class="row">
-            <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-                <div class="brand">
-                    <div class="title center-align">
-                        404 Sorry 您找的页面不存在！
-                    </div>
-                    <div class="title center-align">
-                        试试右上角的<span style="color:blue;font-weight:bold">搜索</span>功能？
-                    </div>
-                    <div class="title center-align">
-                        <a href="/" target="_blank">返回首页</a>
-                    </div>
-                    <div class="description center-align">
-                        Oops～，我崩溃了！找不到你想要的页面 :(
-                    </div>
-                </div>
+    <div class="row">
+    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+        <div class="brand">
+            <div class="title center-align">
+                
+                知蝉一刻
+                
+            </div>
+
+            <div class="description center-align">
+                
+                <span id="subtitle"></span>
+                <script src="/libs/typed/typed.js"></script>
+                <script>
+                    var typed = new Typed("#subtitle", {
+                        strings: [ 
+                            
+                                "人生不摆烂，快乐少一半~",
+                            
+                                "Welcome to Corgi little home~",
+                            
+                        ],
+                        startDelay: 300,
+                        typeSpeed: 100,
+                        loop: true,
+                        backSpeed: 50,
+                        showCursor: true
+                    });
+                </script>
+                
             </div>
         </div>
     </div>
 </div>
 
 
-    <script>
-        // 每天切换 banner 图.  Switch banner image every day.
-        var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
-        $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
-    </script>
+<script>
+    // 每天切换 banner 图.  Switch banner image every day.
+    var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
+    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
+</script>
 
+
+    </div>
+</div>
+
+
+<main class="content">
+    <div class="container chip-container">
+        <div class="card">
+            <div class="card-content">
+                <div class="tag-title center-align">
+                    <i class="joe-font joe-icon-faxian"></i>&nbsp;&nbsp;404
+                </div>
+            
+                
+                    <style>
+                        #m404-text {
+                            -webkit-text-size-adjust: 100%;
+                            line-height: 1.5;
+                            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+                            font-weight: normal;
+                            --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
+                            --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Free";
+                            --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Free";
+                            color: #34495e;
+                            text-align: center;
+                            float: left;
+                            box-sizing: border-box;
+                            padding: 0 .75rem;
+                            min-height: 1px;
+                            opacity: .6;
+                            font-size: 1.1rem;
+                            width: 83.3333333333%;
+                            left: auto;
+                            right: auto;
+                            margin-left: 8.3333333333%;
+                        }
+                    </style>
+                    <div id="m404-text">
+                        <div class="row">
+                            <div class="col l8 offset-l2 m10 offset-m1 s10 offset-s1 center-align text">
+                                d12345
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <hr>
+                
+
+                <blockquote>
+                    <p>你遇到了404危机，我已将你救回！</p>
+                </blockquote>
+
+                
+            </div>
+        </div>
+    </div>
+
+</main>
 
 
     <footer class="page-footer bg-color">
